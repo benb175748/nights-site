@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support · Nights</title>
+<meta name="description" content="Help with Nights: signing in, joining a group, notifications, reporting, and deleting your account.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0C0B0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&amp;family=DM+Mono:wght@400;500&amp;family=Figtree:wght@400;600&amp;display=swap">
+<style>
+  /* Afterglow palette, mirrored from tailwind.config.js / src/theme.ts.
+     scripts/build-site.mjs copies this block into privacy.html. */
+  :root {
+    color-scheme: dark;
+    --bg: #0C0B0A;
+    --surface: #1A1816;
+    --fg: #EFE6D8;
+    --fg2: #CFC5B6;
+    --muted: #A39B8F;
+    --border: rgba(239, 230, 216, 0.10);
+    --border-strong: rgba(239, 230, 216, 0.22);
+    --accent: #FF8A3D;
+    --ember-glow: rgba(255, 138, 61, 0.45);
+    --oxblood: #4A0E0C;
+    --milk: #FFF6EE;
+    --poster: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 400 1.0625rem/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { width: 100%; max-width: 42rem; margin: 0 auto; padding: 0 1.25rem; }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--milk); color: #1A0605; padding: .5rem 1rem; border-radius: 999px; font-weight: 600; }
+  .skip:focus { left: 1rem; top: 1rem; z-index: 10; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  header.site { padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--fg); text-decoration: none; font: 800 1.9rem/1 var(--poster); font-stretch: 75%; letter-spacing: -0.01em; }
+  .brand svg { width: 2.25rem; height: 2.25rem; flex: none; }
+  nav.site ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; }
+  nav.site li { padding: 0; margin: 0; }
+  nav.site li::before { content: none; }
+  nav.site a { color: var(--fg2); text-decoration: none; font-weight: 600; font-size: .95rem; }
+  nav.site a:hover, nav.site a[aria-current="page"] { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .3em; text-decoration-thickness: 2px; }
+
+  main.wrap { padding-top: 2.5rem; padding-bottom: 3.5rem; }
+  h1, h2, h3 { font-family: var(--poster); font-stretch: 75%; color: var(--fg); margin: 0; }
+  h1 { font-weight: 800; font-size: clamp(3rem, 14vw, 5.25rem); line-height: .92; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  h2 { font-weight: 800; font-size: clamp(1.8rem, 7vw, 2.4rem); line-height: 1; letter-spacing: -0.01em; margin: 2.75rem 0 .9rem; }
+  h3 { font-weight: 700; font-size: 1.45rem; line-height: 1.1; margin: 2rem 0 .6rem; }
+  p { margin: 0 0 1rem; color: var(--fg2); }
+  strong { color: var(--fg); font-weight: 600; }
+  ul { margin: 0 0 1.25rem; padding: 0; list-style: none; }
+  li { position: relative; padding-left: 1.3rem; margin: 0 0 .7rem; color: var(--fg2); }
+  li::before { content: ""; position: absolute; left: .1rem; top: .68em; width: .42rem; height: .42rem; border-radius: 50%; background: var(--accent); }
+  ol { margin: 0 0 1.25rem; padding-left: 1.4rem; color: var(--fg2); }
+  ol li { padding-left: .2rem; }
+  ol li::before { content: none; }
+  a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 2px; }
+  a:hover { color: var(--accent); }
+  .stamp { font: 500 .8rem/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); text-shadow: 0 0 6px var(--ember-glow); }
+  .lede { font-size: 1.2rem; color: var(--fg); }
+  mark.todo { background: rgba(255, 138, 61, 0.16); color: var(--accent); padding: 0 .25em; border-radius: 4px; outline: 1px dashed rgba(255, 138, 61, 0.6); }
+
+  .hero { background: var(--oxblood); color: var(--milk); border-radius: 28px; padding: 2.25rem 1.5rem 2rem; margin-bottom: 2.5rem; text-align: center; }
+  .hero svg { width: 7rem; height: 7rem; display: block; margin: 0 auto 1rem; }
+  .hero h1 { color: var(--milk); margin-bottom: .75rem; }
+  .hero p { color: rgba(255, 246, 238, 0.72); margin: 0; font-size: .98rem; }
+  .cards { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 2rem 0 0; }
+  .card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 1.1rem 1.25rem; text-decoration: none; color: var(--fg); }
+  .card:hover { border-color: var(--border-strong); color: var(--fg); }
+  .card strong { display: block; font: 800 1.6rem/1 var(--poster); font-stretch: 75%; margin-bottom: .35rem; }
+  .card span { color: var(--muted); font-size: .95rem; }
+  .steps { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 1.1rem 1.25rem .4rem; margin: 0 0 1.25rem; }
+
+  footer.site { border-top: 1px solid var(--border); padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: .9rem; }
+  footer.site p { color: var(--muted); margin: 0 0 .35rem; }
+  footer.site a { color: var(--fg2); }
+
+  @media (min-width: 40rem) {
+    body { font-size: 1.125rem; }
+    .hero { padding: 3rem 2.5rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="nights, home">
+      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M 46.9 16.1 A 36 36 0 1 0 85.2 59.3 A 29 29 0 0 1 46.9 16.1 Z" fill="#000" stroke="#000" stroke-width="9" stroke-linejoin="round" transform="translate(5 5)"/><path d="M 46.9 16.1 A 36 36 0 1 0 85.2 59.3 A 29 29 0 0 1 46.9 16.1 Z" fill="#FFF6EE" stroke="#000" stroke-width="7" stroke-linejoin="round"/><circle cx="80" cy="22" r="4.5" fill="#FF8A3D" stroke="#000" stroke-width="3"/></svg>
+      nights
+    </a>
+    <nav class="site" aria-label="Site">
+      <ul>
+        <li><a href="./">about</a></li>
+        <li><a href="privacy.html">privacy</a></li>
+        <li><a href="terms.html">terms</a></li>
+        <li><a href="support.html" aria-current="page">support</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <h1>need a hand?</h1>
+  <p class="lede">email us at <a href="mailto:benburgess1234@gmail.com">benburgess1234@gmail.com</a> and a real person will get back to you. tell us the email or Apple Account you sign in with and your username, and what happened. please don't send photos of other people unless we ask.</p>
+  <p>use the same address to report a photo or a person, to ask what we hold about you, or to ask us to delete something.</p>
+
+  <h2>delete your account</h2>
+  <p>you can do it yourself, in the app, at any time:</p>
+  <div class="steps">
+    <ol>
+      <li>on the home screen, tap your picture in the top right.</li>
+      <li>scroll down and tap <strong>Delete account</strong>.</li>
+      <li>tap <strong>Delete everything</strong> to confirm.</li>
+    </ol>
+  </div>
+  <p>this deletes your profile, every photo and video you posted, your reactions, your notification and lock screen tokens, and your group memberships, straight away. groups where you were the last member are deleted too; in other groups, ownership passes to the member who's been there longest. it can't be undone. if you can't get into the app any more, email us from the address you signed up with and we'll do it for you.</p>
+
+  <h2>signing in</h2>
+  <ul>
+    <li><strong>sign in with Apple</strong> or <strong>use email</strong>. there are no passwords.</li>
+    <li>with email, we send a link and a 6-digit code. type the code in the app, or open the link on the same phone. both work for an hour.</li>
+    <li>nothing arrived? check spam, then tap <strong>can't find it? send again</strong>. only the newest email works after that.</li>
+    <li>nights is for people 18 and over. the app won't create a profile for anyone younger.</li>
+  </ul>
+
+  <h2>groups and nights</h2>
+  <ul>
+    <li>to join a group, ask someone in it for its invite code (8 letters and numbers), then tap <strong>Join with a code</strong> on the home screen (or <strong>have a code? join a group</strong> if you have no groups yet). there's no search, so a code is the only way in.</li>
+    <li>group owners can rename the group, get a new code (the old one stops working), and remove people, from the group's members sheet.</li>
+    <li>anyone in the group can start or end a night. a night ends by itself after 12 hours.</li>
+    <li>if a night ends after midnight, its recap opens at 9 am. that's on purpose, so everyone sees it together.</li>
+    <li>nights are cleared after 12 months unless someone keeps them: open the night, tap its title, and turn on <strong>Keep this night</strong>.</li>
+  </ul>
+
+  <h2>something's wrong with a photo or a person</h2>
+  <ul>
+    <li><strong>report a photo:</strong> in a recap, press and hold the photo (or tap <strong>&middot;&middot;&middot;</strong> while watching), then <strong>Report</strong>. the group's owner sees it and can delete it.</li>
+    <li><strong>block someone:</strong> same menu, <strong>Block</strong>, or from the group's members sheet. you'll stop seeing each other's photos and reactions.</li>
+    <li><strong>unblock:</strong> tap your picture, then <strong>Blocked people</strong>.</li>
+    <li><strong>delete your own photo:</strong> press and hold it, then <strong>Delete</strong>. it's gone for everyone.</li>
+    <li><strong>your work used without permission:</strong> report it with the reason <strong>it's my work, used without permission</strong>, or email us. we remove content that infringes someone's rights (see the <a href="terms.html">terms</a>).</li>
+  </ul>
+
+  <h2>notifications and the lock screen</h2>
+  <ul>
+    <li>nights only sends three notifications: a friend started a night, a recap is ready, someone reacted to your photo (at most once an hour). turn them on or off from your picture &rarr; <strong>Notifications</strong>.</li>
+    <li>while a night is live, it can sit on your lock screen and in the Dynamic Island. switch it off any time from your picture &rarr; <strong>Lock screen</strong>.</li>
+  </ul>
+
+  <p>more about what we store and why is in the <a href="privacy.html">privacy policy</a>.</p>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>nights is run by Ben Burgess. questions: <a href="mailto:benburgess1234@gmail.com">benburgess1234@gmail.com</a></p>
+    <p><a href="./">about</a> · <a href="privacy.html">privacy</a></p>
+  </div>
+</footer>
+</body>
+</html>

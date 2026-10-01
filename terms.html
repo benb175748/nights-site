@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms · Nights</title>
+<meta name="description" content="The terms for using Nights, including zero tolerance for objectionable content.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0C0B0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&amp;family=DM+Mono:wght@400;500&amp;family=Figtree:wght@400;600&amp;display=swap">
+<style>
+  /* Afterglow palette, mirrored from tailwind.config.js / src/theme.ts.
+     scripts/build-site.mjs copies this block into privacy.html. */
+  :root {
+    color-scheme: dark;
+    --bg: #0C0B0A;
+    --surface: #1A1816;
+    --fg: #EFE6D8;
+    --fg2: #CFC5B6;
+    --muted: #A39B8F;
+    --border: rgba(239, 230, 216, 0.10);
+    --border-strong: rgba(239, 230, 216, 0.22);
+    --accent: #FF8A3D;
+    --ember-glow: rgba(255, 138, 61, 0.45);
+    --oxblood: #4A0E0C;
+    --milk: #FFF6EE;
+    --poster: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 400 1.0625rem/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { width: 100%; max-width: 42rem; margin: 0 auto; padding: 0 1.25rem; }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--milk); color: #1A0605; padding: .5rem 1rem; border-radius: 999px; font-weight: 600; }
+  .skip:focus { left: 1rem; top: 1rem; z-index: 10; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  header.site { padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--fg); text-decoration: none; font: 800 1.9rem/1 var(--poster); font-stretch: 75%; letter-spacing: -0.01em; }
+  .brand svg { width: 2.25rem; height: 2.25rem; flex: none; }
+  nav.site ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; }
+  nav.site li { padding: 0; margin: 0; }
+  nav.site li::before { content: none; }
+  nav.site a { color: var(--fg2); text-decoration: none; font-weight: 600; font-size: .95rem; }
+  nav.site a:hover, nav.site a[aria-current="page"] { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .3em; text-decoration-thickness: 2px; }
+
+  main.wrap { padding-top: 2.5rem; padding-bottom: 3.5rem; }
+  h1, h2, h3 { font-family: var(--poster); font-stretch: 75%; color: var(--fg); margin: 0; }
+  h1 { font-weight: 800; font-size: clamp(3rem, 14vw, 5.25rem); line-height: .92; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+  h2 { font-weight: 800; font-size: clamp(1.8rem, 7vw, 2.4rem); line-height: 1; letter-spacing: -0.01em; margin: 2.75rem 0 .9rem; }
+  h3 { font-weight: 700; font-size: 1.45rem; line-height: 1.1; margin: 2rem 0 .6rem; }
+  p { margin: 0 0 1rem; color: var(--fg2); }
+  strong { color: var(--fg); font-weight: 600; }
+  ul { margin: 0 0 1.25rem; padding: 0; list-style: none; }
+  li { position: relative; padding-left: 1.3rem; margin: 0 0 .7rem; color: var(--fg2); }
+  li::before { content: ""; position: absolute; left: .1rem; top: .68em; width: .42rem; height: .42rem; border-radius: 50%; background: var(--accent); }
+  ol { margin: 0 0 1.25rem; padding-left: 1.4rem; color: var(--fg2); }
+  ol li { padding-left: .2rem; }
+  ol li::before { content: none; }
+  a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 2px; }
+  a:hover { color: var(--accent); }
+  .stamp { font: 500 .8rem/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); text-shadow: 0 0 6px var(--ember-glow); }
+  .lede { font-size: 1.2rem; color: var(--fg); }
+  mark.todo { background: rgba(255, 138, 61, 0.16); color: var(--accent); padding: 0 .25em; border-radius: 4px; outline: 1px dashed rgba(255, 138, 61, 0.6); }
+
+  .hero { background: var(--oxblood); color: var(--milk); border-radius: 28px; padding: 2.25rem 1.5rem 2rem; margin-bottom: 2.5rem; text-align: center; }
+  .hero svg { width: 7rem; height: 7rem; display: block; margin: 0 auto 1rem; }
+  .hero h1 { color: var(--milk); margin-bottom: .75rem; }
+  .hero p { color: rgba(255, 246, 238, 0.72); margin: 0; font-size: .98rem; }
+  .cards { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 2rem 0 0; }
+  .card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 1.1rem 1.25rem; text-decoration: none; color: var(--fg); }
+  .card:hover { border-color: var(--border-strong); color: var(--fg); }
+  .card strong { display: block; font: 800 1.6rem/1 var(--poster); font-stretch: 75%; margin-bottom: .35rem; }
+  .card span { color: var(--muted); font-size: .95rem; }
+  .steps { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 1.1rem 1.25rem .4rem; margin: 0 0 1.25rem; }
+
+  footer.site { border-top: 1px solid var(--border); padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: .9rem; }
+  footer.site p { color: var(--muted); margin: 0 0 .35rem; }
+  footer.site a { color: var(--fg2); }
+
+  @media (min-width: 40rem) {
+    body { font-size: 1.125rem; }
+    .hero { padding: 3rem 2.5rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+<!-- Generated by scripts/build-site.mjs from TERMS.md. Edit TERMS.md, not this file. -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="nights, home">
+      <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M 46.9 16.1 A 36 36 0 1 0 85.2 59.3 A 29 29 0 0 1 46.9 16.1 Z" fill="#000" stroke="#000" stroke-width="9" stroke-linejoin="round" transform="translate(5 5)"/><path d="M 46.9 16.1 A 36 36 0 1 0 85.2 59.3 A 29 29 0 0 1 46.9 16.1 Z" fill="#FFF6EE" stroke="#000" stroke-width="7" stroke-linejoin="round"/><circle cx="80" cy="22" r="4.5" fill="#FF8A3D" stroke="#000" stroke-width="3"/></svg>
+      nights
+    </a>
+    <nav class="site" aria-label="Site">
+      <ul>
+        <li><a href="./">about</a></li>
+        <li><a href="privacy.html">privacy</a></li>
+        <li><a href="terms.html" aria-current="page">terms</a></li>
+        <li><a href="support.html">support</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+<h1>Terms of use</h1>
+<p>Nights is a private app for a group of friends to document a night out. These terms are the house rules for using it, on top of the App Store's standard licence (see The fine print). They are short on purpose. By creating an account or using Nights, you agree to them.</p>
+<p>Nights is run by Ben Burgess. When these terms say "we", they mean them.</p>
+<h2>Who can use Nights</h2>
+<ul>
+  <li>You must be 18 or older.</li>
+  <li>One account per person. Keep your sign-in to yourself; you are responsible for what is posted from your account.</li>
+</ul>
+<h2>Zero tolerance</h2>
+<p>Nights has no tolerance for objectionable content or abusive users. You must not post, or use Nights to:</p>
+<ul>
+  <li>share sexual content or nudity, or anything that sexualises minors in any way;</li>
+  <li>share photos or videos of someone who has asked you not to, or who clearly did not agree to be filmed in a private moment;</li>
+  <li>harass, bully, threaten, or intimidate anyone;</li>
+  <li>post hateful content that attacks people for who they are;</li>
+  <li>show or encourage violence, self-harm, or illegal activity;</li>
+  <li>impersonate someone, spam, or try to break or misuse the app.</li>
+</ul>
+<p>If you break these rules, we remove the content and can remove you from Nights, without warning.</p>
+<h2>Reporting and blocking</h2>
+<ul>
+  <li>Every photo and video has a Report option. Reports go to the group's owner, who can remove the post, and to us.</li>
+  <li>We review every report within 24 hours. When content breaks these terms we remove it, and we remove the person who posted it from Nights.</li>
+  <li>You can block anyone. Once you block someone, you stop seeing each other's photos and reactions.</li>
+  <li>You can also email us about any content or person at the address below.</li>
+</ul>
+<h2>Your content</h2>
+<ul>
+  <li>What you post stays yours. You give us permission to store it and show it to the members of the group you posted it to, only so Nights can work. We do not use it for anything else.</li>
+  <li>Only post things you have the right to share.</li>
+  <li>You can delete your own posts at any time, and group owners can delete any post in their group. Nights older than 12 months are deleted unless someone marked them as kept. The privacy policy explains what we store and for how long.</li>
+</ul>
+<h2>Someone else's work</h2>
+<ul>
+  <li>If you think something on Nights uses your work without permission, report it in the app with the reason "It's my work, used without permission", or email us at the address below. Tell us what the work is and where it appears.</li>
+  <li>We remove content that infringes someone else's rights, and we may remove people who do it repeatedly.</li>
+</ul>
+<h2>Your account</h2>
+<ul>
+  <li>You can delete your account at any time in Settings. That deletes your profile, your posts and their files.</li>
+  <li>We can suspend or delete accounts that break these terms.</li>
+</ul>
+<h2>The fine print</h2>
+<ul>
+  <li>Nights is provided as it is. We work to keep it running and your photos safe, but we cannot promise it will always be available or free of errors, and you should keep your own copy of anything you cannot lose. To the extent the law allows, we are not liable for indirect losses from using the app.</li>
+  <li>If you downloaded Nights from the App Store, Apple's standard licensed application end user license agreement (EULA) is your licence to use the app. These terms add to it and never replace it: if the two ever conflict, the standard EULA decides how you may use the app.</li>
+  <li>These terms are between you and us. Apple is not a party to them and is not responsible for Nights or anything in it.</li>
+  <li>We may update these terms. If a change matters, we will say so in the app before it applies. Using Nights after that means you accept the new terms.</li>
+</ul>
+<h2>Contact</h2>
+<p>Questions, reports, or requests: email <a href="mailto:benburgess1234@gmail.com">benburgess1234@gmail.com</a>.</p>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>This is the same text as the Terms page inside the app.</p>
+    <p><a href="./">about</a> · <a href="support.html">support</a></p>
+  </div>
+</footer>
+</body>
+</html>
